@@ -1,0 +1,194 @@
+[
+  {
+    "name": "test_result_init_valid",
+    "function": "test_result_init_valid",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_result_init_invalid",
+    "function": "test_result_init_invalid",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_result_init_too_small",
+    "function": "test_result_init_too_small",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_result_init_too_high",
+    "function": "test_result_init_too_high",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_result_date_as_string",
+    "function": "test_result_date_as_string",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_result_date_default",
+    "function": "test_result_date_default",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_empty_discipline",
+    "function": "test_empty_discipline",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_single_result_added",
+    "function": "test_single_result_added",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_multi_result_added",
+    "function": "test_multi_result_added",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_too_many_results_added",
+    "function": "test_too_many_results_added",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_get_result_valid",
+    "function": "test_get_result_valid",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_get_result_invalid",
+    "function": "test_get_result_invalid",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_multi_result",
+    "function": "test_multi_result",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_average_without_result",
+    "function": "test_average_without_result",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_single_result_average",
+    "function": "test_single_result_average",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_average",
+    "function": "test_average",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_empty_record",
+    "function": "test_empty_record",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_add_discipline",
+    "function": "test_add_discipline",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_add_multiple_disciplines",
+    "function": "test_add_multiple_disciplines",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_max_disciplines",
+    "function": "test_max_disciplines",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_take_valid",
+    "function": "test_take_valid",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_take_invalid",
+    "function": "test_take_invalid",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_initialisation",
+    "function": "test_initialisation",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_relationship_to_record",
+    "function": "test_relationship_to_record",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_default_record",
+    "function": "test_default_record",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_club_init",
+    "function": "test_club_init",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_single_athlete_added",
+    "function": "test_single_athlete_added",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_take_invalid_athlete",
+    "function": "test_take_invalid_athlete",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_multi_athlete_added",
+    "function": "test_multi_athlete_added",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_too_many_athletes_added",
+    "function": "test_too_many_athletes_added",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_athlete_list",
+    "function": "test_athlete_list",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_athlete_report_not_found",
+    "function": "test_athlete_report_not_found",
+    "timeout": 10,
+    "points": 1
+  }
+]
