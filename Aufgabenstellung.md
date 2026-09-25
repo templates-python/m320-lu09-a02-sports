@@ -24,7 +24,7 @@ classDiagram
     
     class Athlete {
         -name: String
-        -club: Club "&lpar;=None&rpar;"
+        -club: Club =Non
         -performance_report: PerformanceRecord
         +Athlete(name String, report PerformanceReport|None)
         +«prop»name String
@@ -33,8 +33,8 @@ classDiagram
         +«prop»report PerformanceReport
     }
     class PerformanceRecord {
-        -disciplines[] Discipline (=[])
-        -athlete Athlete (=None)
+        -disciplines[] Discipline =[]
+        -athlete Athlete =None
         +PerformanceRecord()
         +add_discipline(discipline)
         +count_disciplines() int
@@ -45,7 +45,7 @@ classDiagram
         +«setter»athlete(athlete: Athlete) void
     }
     class Club {
-        -athletes[] : Athlete (=[])
+        -athletes[] : Athlete =[]
         -designation: String
         +add_athlete(athlete)
         +count_athletes() int
