@@ -29,17 +29,17 @@ classDiagram
         +take_athlete(index) Athlete
         +show_athlete_list() str
         +show_athlete_report(name) str
-        +<<prop>>designation() String
+        +«prop»designation() String
     }
     class Athlete {
         -name: String
         -club: Club
         -performance_report: PerformanceRecord
         +Athlete(name String, report PerformanceReport)
-        +<<prop>>name String
-        <<prop>>club() String
-        +<<setter>>club (club: Club) void
-        +<<prop>>report PerformanceReport
+        +«prop»name String
+        +«prop»club() String
+        +«setter»club (club: Club) void
+        +«prop»report PerformanceReport
     }
     class PerformanceRecord {
         -disciplines[] Discipline (=[])
@@ -50,8 +50,8 @@ classDiagram
         +take_discipline(index) Discipline
         +show_overview() str
         +show_details() str
-        +<<prop>>athlete() Athlete
-        +<<setter>>athlete(athlete: Athlete) void
+        +«prop»athlete() Athlete
+        +«setter»athlete(athlete: Athlete) void
     }
     class Discipline {
         -name
@@ -60,17 +60,17 @@ classDiagram
         +add_result(result) void
         +take_result(index) Result
         +count_results() int
-        +<<prop>>name() String
-        +<<prop>>average() float
+        +«prop»name() String
+        +«prop»average() float
     }
     class Result {
-        <<dataclass>>
+        «dataclass»
         +value : float
         +date : datetime
-        +<<prop>>value() float
-        +<<setter>>value(value float) void
-        +<<prop>>date() DateTime
-        +<<setter>>date(date: DateTime|String) void
+        +«prop»value() float
+        +«setter»value(value float) void
+        +«prop»date() DateTime
+        +«setter»date(date: DateTime|String) void
     }
 
     Club "1" o-- "0..25" Athlete
