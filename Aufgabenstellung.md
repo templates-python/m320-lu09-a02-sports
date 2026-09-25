@@ -24,9 +24,9 @@ classDiagram
     
     class Athlete {
         -name: String
-        -club: Club
+        -club: Club "&lpar;=None&rpar;"
         -performance_report: PerformanceRecord
-        +Athlete(name String, report PerformanceReport)
+        +Athlete(name String, report PerformanceReport|None)
         +«prop»name String
         +«prop»club() String
         +«setter»club (club: Club) void
@@ -83,52 +83,56 @@ classDiagram
 ## Klassenstruktur und Anforderungen
 ### Allgemeine Angaben
 - Wird bei einer Methode `take_...` oder `delete_...` ein ungültiger Index angegeben, soll ein `IndexError` ausgelöst werden.
-
+- Wird die maximale Anzahl Beziehungen überschritten, wird ein `OverflowError` ausgelöst.
 
 ### Club
 #### Konstruktor: 
 Die Schreibweise `athletes[] : Athlete` zeigt an, dass es sich um eine Liste (Array) handelt.
 
-**add_athlete**:
+####add_athlete
 - Maximum 25 Athleten
-- setzt bei jedem Athleten die Rückreferenz `club`
 - `OverflowError` bei Überschreitung
+- setzt bei jedem Athleten die Rückreferenz `club`
+
 
 #### show_athlete_list
 Namen aller Athleten ausgeben (einer pro Zeile)
-`Max
+```
+Max
 Aylin
-Hanna`
+Hanna
+```
 
 #### show_athlete_report(name)
-Leistungsausweis mit allen Disziplinen und deren Schnitt; 
+```
+Todo
+```
+
 `"Athlet <name> nicht gefunden"`, falls kein Athlet mit diesem Namen existiert
 
 ### Athlete
 
-**Konstruktor**: `name` und optional `record` (Default: ein neuer, leerer `PerformanceRecord`); setzt beim übergebenen bzw. erzeugten `PerformanceRecord` die Rückreferenz `athlete`; `club` ist zu Beginn `None`
+#### Konstruktor
+Wird kein `PerformanceRecord` übergeben, wird ein neues, leeres Objekt erzeugt.
+Setzt beim übergebenen bzw. erzeugten `PerformanceRecord` die Rückreferenz `athlete`;
 
-**show_report**: Referenz auf das `PerformanceRecord`-Objekt zurückgeben
 
 ### PerformanceRecord
 
-**Konstruktor**: `_disciplines[]` als leere Liste initialisieren, `athlete` zu Beginn `None`
+####show_overview
+Leistungsausweis mit allen Disziplinen und deren Punkteschnitt
+```
+todo
+```
 
-**add_discipline**:
-- Maximum 4 Disziplinen
-- `OverflowError` bei Überschreitung
-
-**take_discipline(index)**: Disziplin bei Index liefern, `IndexError` bei ungültigem Index
-
-**count_disciplines**: Anzahl zurückgeben
-
-**show_overview**: Leistungsausweis mit allen Disziplinen und deren Notenschnitt (analog zum "Zeugnis" der Schulverwaltung)
-
-**show_details**: alle Disziplinen mit den einzelnen Resultaten (Datum + Wert) und dem jeweiligen Schnitt
+####show_details
+alle Disziplinen mit den einzelnen Resultaten (Datum + Wert) und dem jeweiligen Schnitt
+```
+todo
+```
 
 ### Discipline
 
-**Konstruktor**: `name` übernehmen, `_results[]` als leere Liste initialisieren
 
 **add_result**:
 - Maximum 5 Resultate
