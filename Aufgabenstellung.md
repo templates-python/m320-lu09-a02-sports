@@ -21,7 +21,15 @@ Ein `Club` verwaltet seine `Athlete`n. Jede `Athlete`-Person besitzt genau einen
 
 ```mermaid
 classDiagram
-    
+    class Club {
+        -_athletes : list
+        +designation
+        +add_athlete(athlete)
+        +count_athletes() int
+        +take_athlete(index) Athlete
+        +show_athlete_list() str
+        +show_athlete_report(name) str
+    }
     class Athlete {
         -name: String
         -club: Club *=None*
