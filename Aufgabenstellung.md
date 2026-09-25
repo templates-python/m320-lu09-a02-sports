@@ -45,7 +45,7 @@ classDiagram
         +«setter»athlete(athlete: Athlete) void
     }
     class Club {
-        -athletes[] : Athlete
+        -athletes[] : Athlete (=[])
         -designation: String
         +add_athlete(athlete)
         +count_athletes() int
@@ -81,25 +81,28 @@ classDiagram
 ```
 
 ## Klassenstruktur und Anforderungen
+### Allgemeine Angaben
+- Wird bei einer Methode `take_...` oder `delete_...` ein ungültiger Index angegeben, soll ein `IndexError` ausgelöst werden.
+
 
 ### Club
-
-**Konstruktor**: `designation` übernehmen, `_athletes[]` als leere Liste initialisieren
+#### Konstruktor: 
+Die Schreibweise `athletes[] : Athlete` zeigt an, dass es sich um eine Liste (Array) handelt.
 
 **add_athlete**:
 - Maximum 25 Athleten
 - setzt bei jedem Athleten die Rückreferenz `club`
 - `OverflowError` bei Überschreitung
 
-**count_athletes**: Anzahl zurückgeben
+#### show_athlete_list
+Namen aller Athleten ausgeben (einer pro Zeile)
+`Max
+Aylin
+Hanna`
 
-**take_athlete(index)**:
-- Athlet bei Index liefern
-- `IndexError` bei ungültigem Index
-
-**show_athlete_list**: Namen aller Athleten ausgeben (einer pro Zeile)
-
-**show_athlete_report(name)**: Leistungsausweis mit allen Disziplinen und deren Schnitt; `"Athlet <name> nicht gefunden"`, falls kein Athlet mit diesem Namen existiert
+#### show_athlete_report(name)
+Leistungsausweis mit allen Disziplinen und deren Schnitt; 
+`"Athlet <name> nicht gefunden"`, falls kein Athlet mit diesem Namen existiert
 
 ### Athlete
 
@@ -210,7 +213,7 @@ Athlet Theo nicht gefunden
 - Dauer: 4–6 Stunden
 - Format: Push ins GitHub Repository
 - GitHub Repository (Vorlage): https://github.com/templates-python/m320-lu09-a02-sportverein *(Platzhalter – siehe Hinweis unten)*
-- BZZ-Lernende: GitHub Classroom Assignment verwenden
+- BZZ-Lernende: Classroom50 Assignment verwenden
 
 ## Lizenz
 
