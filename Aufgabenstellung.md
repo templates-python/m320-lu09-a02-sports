@@ -21,41 +21,57 @@ Ein `Club` verwaltet seine `Athlete`n. Jede `Athlete`-Person besitzt genau einen
 
 ```mermaid
 classDiagram
-    class Club {
-        -_athletes : list
-        +designation
-        +add_athlete(athlete)
-        +count_athletes() int
-        +take_athlete(index) Athlete
-        +show_athlete_list() str
-        +show_athlete_report(name) str
-    }
+    
     class Athlete {
-        +name
-        +club
-        +show_report() PerformanceRecord
+        -name: String
+        -club: Club *=None*
+        -performance_report: PerformanceRecord
+        +Athlete(name String, report PerformanceReport|None)
+        +«prop»name String
+        +«prop»club() String
+        +«setter»club (club: Club) void
+        +«prop»report PerformanceReport
     }
     class PerformanceRecord {
-        -_disciplines : list
-        +athlete
+        -disciplines[] Discipline *=[]*
+        -athlete Athlete *=None*
+        +PerformanceRecord()
         +add_discipline(discipline)
         +count_disciplines() int
         +take_discipline(index) Discipline
         +show_overview() str
         +show_details() str
+        +«prop»athlete() Athlete
+        +«setter»athlete(athlete: Athlete) void
+    }
+    class Club {
+        -athletes[] : Athlete *=[]*
+        -designation: String
+        +add_athlete(athlete)
+        +count_athletes() int
+        +take_athlete(index) Athlete
+        +show_athlete_list() str
+        +show_athlete_report(name) str
+        +«prop»designation() String
     }
     class Discipline {
-        -_results : list
-        +name
-        +add_result(result)
+        -name
+        -results[] Result
+        +Discipline(name String)
+        +add_result(result) void
         +take_result(index) Result
         +count_results() int
-        +average() float
+        +«prop»name() String
+        +«prop»average() float
     }
     class Result {
-        <<dataclass>>
+        «dataclass»
         +value : float
-        +date : datetime
+        +date : datetime *=now*
+        +«prop»value() float
+        +«setter»value(value float) void
+        +«prop»date() DateTime
+        +«setter»date(date: DateTime|String) void
     }
 
     Club "1" o-- "0..25" Athlete
@@ -65,71 +81,69 @@ classDiagram
 ```
 
 ## Klassenstruktur und Anforderungen
+### Allgemeine Angaben
+- Wird bei einer Methode `take_...`, `replace_...` oder `delete_...` ein ungültiger Index angegeben, soll ein `IndexError` ausgelöst werden.
+- Wird die maximale Anzahl Beziehungen überschritten, wird ein `OverflowError` ausgelöst.
 
 ### Club
+#### Konstruktor: 
+Die Schreibweise `athletes[] : Athlete` zeigt an, dass es sich um eine Liste (Array) handelt.
 
-**Konstruktor**: `designation` übernehmen, `_athletes[]` als leere Liste initialisieren
-
-**add_athlete**:
+####add_athlete
 - Maximum 25 Athleten
-- setzt bei jedem Athleten die Rückreferenz `club`
 - `OverflowError` bei Überschreitung
+- setzt bei jedem Athleten die Rückreferenz `club`
 
-**count_athletes**: Anzahl zurückgeben
 
-**take_athlete(index)**:
-- Athlet bei Index liefern
-- `IndexError` bei ungültigem Index
+#### show_athlete_list
+Namen aller Athleten ausgeben (einer pro Zeile)
+```
+Max
+Aylin
+Hanna
+```
 
-**show_athlete_list**: Namen aller Athleten ausgeben (einer pro Zeile)
+#### show_athlete_report(name)
+```
+Todo
+```
 
-**show_athlete_report(name)**: Leistungsausweis mit allen Disziplinen und deren Schnitt; `"Athlet <name> nicht gefunden"`, falls kein Athlet mit diesem Namen existiert
+`"Athlet <name> nicht gefunden"`, falls kein Athlet mit diesem Namen existiert
 
 ### Athlete
 
-**Konstruktor**: `name` und optional `record` (Default: ein neuer, leerer `PerformanceRecord`); setzt beim übergebenen bzw. erzeugten `PerformanceRecord` die Rückreferenz `athlete`; `club` ist zu Beginn `None`
+#### Konstruktor
+Wird kein `PerformanceRecord` übergeben, wird ein neues, leeres Objekt erzeugt.
+Setzt beim übergebenen bzw. erzeugten `PerformanceRecord` die Rückreferenz `athlete`;
 
-**show_report**: Referenz auf das `PerformanceRecord`-Objekt zurückgeben
 
 ### PerformanceRecord
 
-**Konstruktor**: `_disciplines[]` als leere Liste initialisieren, `athlete` zu Beginn `None`
+####show_overview
+Leistungsausweis mit allen Disziplinen und deren Punkteschnitt
+```
+todo
+```
 
-**add_discipline**:
-- Maximum 4 Disziplinen
-- `OverflowError` bei Überschreitung
-
-**take_discipline(index)**: Disziplin bei Index liefern, `IndexError` bei ungültigem Index
-
-**count_disciplines**: Anzahl zurückgeben
-
-**show_overview**: Leistungsausweis mit allen Disziplinen und deren Notenschnitt (analog zum "Zeugnis" der Schulverwaltung)
-
-**show_details**: alle Disziplinen mit den einzelnen Resultaten (Datum + Wert) und dem jeweiligen Schnitt
+####show_details
+alle Disziplinen mit den einzelnen Resultaten (Datum + Wert) und dem jeweiligen Schnitt
+```
+todo
+```
 
 ### Discipline
 
-**Konstruktor**: `name` übernehmen, `_results[]` als leere Liste initialisieren
 
-**add_result**:
-- Maximum 5 Resultate
-- `OverflowError` bei Überschreitung
-
-**take_result(index)**: Resultat bei Index liefern, `IndexError` bei ungültigem Index
-
-**count_results**: Anzahl Resultate zurückgeben
-
-**average**: Durchschnitt aller Resultate berechnen (0.00, falls leer)
+#### <<prop>>average
+Durchschnitt aller Resultate berechnen (0.00, falls leer)
 
 ### Result
 
 Implementiert als `@dataclass`
 
-**Konstruktor**: `value` und `date` initialisieren
-
 **\_\_post_init\_\_**: Zusicherung für `value` (gültige Zahl, Bereichsprüfung 0.0–10.0), `ValueError` bei ungültigem Wert, `TypeError` bei nicht-numerischem Wert
 
-**date.setter**:
+####<<date.setter>>
 - `DateTime`-Objekt direkt speichern
 - String im Format `(d)d.(m)m.(yy)yy` in `DateTime` konvertieren
 - Alles andere (inkl. `None`): aktueller Zeitstempel
@@ -194,7 +208,7 @@ Athlet Theo nicht gefunden
 - Dauer: 4–6 Stunden
 - Format: Push ins GitHub Repository
 - GitHub Repository (Vorlage): https://github.com/templates-python/m320-lu09-a02-sportverein *(Platzhalter – siehe Hinweis unten)*
-- BZZ-Lernende: GitHub Classroom Assignment verwenden
+- BZZ-Lernende: Classroom50 Assignment verwenden
 
 ## Lizenz
 
