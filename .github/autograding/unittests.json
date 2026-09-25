@@ -36,6 +36,12 @@
     "points": 1
   },
   {
+    "name": "test_result_value_setter",
+    "function": "test_result_value_setter",
+    "timeout": 10,
+    "points": 1
+  },
+  {
     "name": "test_empty_discipline",
     "function": "test_empty_discipline",
     "timeout": 10,
@@ -132,6 +138,12 @@
     "points": 1
   },
   {
+    "name": "test_athlete_setter",
+    "function": "test_athlete_setter",
+    "timeout": 10,
+    "points": 1
+  },
+  {
     "name": "test_initialisation",
     "function": "test_initialisation",
     "timeout": 10,
@@ -146,6 +158,12 @@
   {
     "name": "test_default_record",
     "function": "test_default_record",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_club_setter",
+    "function": "test_club_setter",
     "timeout": 10,
     "points": 1
   },
@@ -188,6 +206,18 @@
   {
     "name": "test_athlete_report_not_found",
     "function": "test_athlete_report_not_found",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_remove_athlete",
+    "function": "test_remove_athlete",
+    "timeout": 10,
+    "points": 1
+  },
+  {
+    "name": "test_remove_invalid_athlete",
+    "function": "test_remove_invalid_athlete",
     "timeout": 10,
     "points": 1
   }

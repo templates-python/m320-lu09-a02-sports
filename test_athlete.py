@@ -20,16 +20,25 @@ def test_initialisation(nina, athlete_record):
     """ tests the constructor """
     assert nina.name == 'Nina'
     assert nina.club is None
-    assert nina.show_report() is athlete_record
+    assert nina.report is athlete_record
 
 
 def test_relationship_to_record(nina, athlete_record):
     """ tests the reference between the athlete and the performance record """
-    assert nina.show_report().athlete is nina
+    assert nina.report.athlete is nina
 
 
 def test_default_record():
     """ tests that a default performance record is created when none is given """
     jon = Athlete('Jon')
-    assert isinstance(jon.show_report(), PerformanceRecord)
-    assert jon.show_report().athlete is jon
+    assert isinstance(jon.report, PerformanceRecord)
+    assert jon.report.athlete is jon
+
+
+def test_club_setter():
+    """ tests that the club back-reference can be set """
+    nina = Athlete('Nina')
+    assert nina.club is None
+    club = object()
+    nina.club = club
+    assert nina.club is club

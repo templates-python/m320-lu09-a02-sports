@@ -51,3 +51,12 @@ def test_result_date_default():
     result = Result(7.5)
     after = datetime.now()
     assert before <= result.date <= after
+
+
+def test_result_value_setter(some_date):
+    """ tests that the value setter validates on reassignment """
+    result = Result(7.5, some_date)
+    result.value = 9.0
+    assert result.value == 9.0
+    with pytest.raises(ValueError):
+        result.value = 11.0

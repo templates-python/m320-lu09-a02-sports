@@ -62,3 +62,10 @@ def test_take_invalid(record_empty):
     record_empty.add_discipline(Discipline('Sprint'))
     with pytest.raises(IndexError):
         record_empty.take_discipline(2)
+
+
+def test_athlete_setter(record_empty):
+    """ tests that the athlete back-reference can be set """
+    athlete = object()
+    record_empty.athlete = athlete
+    assert record_empty.athlete is athlete

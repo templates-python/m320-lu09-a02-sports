@@ -22,52 +22,46 @@ Ein `Club` verwaltet seine `Athlete`n. Jede `Athlete`-Person besitzt genau einen
 ```mermaid
 classDiagram
     class Club {
-        -_athletes : list
-        +designation
-        +add_athlete(athlete)
+        -athletes[] : Athlete =[]
+        -designation: String
+        +club(designation: String)
+        +add_athlete(athlete: Athlete)
         +count_athletes() int
-        +take_athlete(index) Athlete
+        +take_athlete(index: int) Athlete
+        +remove_athlete(index: int) void
         +show_athlete_list() str
         +show_athlete_report(name) str
+        +«prop»designation() String
     }
     class Athlete {
         -name: String
-        -club: Club *=None*
+        -club: Club =None
         -performance_report: PerformanceRecord
-        +Athlete(name String, report PerformanceReport|None)
+        +Athlete(name: String, report: PerformanceReport|None)
         +«prop»name String
         +«prop»club() String
         +«setter»club (club: Club) void
         +«prop»report PerformanceReport
     }
     class PerformanceRecord {
-        -disciplines[] Discipline *=[]*
-        -athlete Athlete *=None*
+        -disciplines[]: Discipline =[]
+        -athlete: Athlete =None
         +PerformanceRecord()
-        +add_discipline(discipline)
+        +add_discipline(discipline: Discipline)
         +count_disciplines() int
-        +take_discipline(index) Discipline
+        +take_discipline(index: int) Discipline
         +show_overview() str
         +show_details() str
         +«prop»athlete() Athlete
         +«setter»athlete(athlete: Athlete) void
     }
-    class Club {
-        -athletes[] : Athlete *=[]*
-        -designation: String
-        +add_athlete(athlete)
-        +count_athletes() int
-        +take_athlete(index) Athlete
-        +show_athlete_list() str
-        +show_athlete_report(name) str
-        +«prop»designation() String
-    }
+    
     class Discipline {
-        -name
-        -results[] Result
-        +Discipline(name String)
-        +add_result(result) void
-        +take_result(index) Result
+        -name: String
+        -results[]: Result
+        +Discipline(name: String)
+        +add_result(result: Result) void
+        +take_result(index: int) Result
         +count_results() int
         +«prop»name() String
         +«prop»average() float
@@ -75,9 +69,9 @@ classDiagram
     class Result {
         «dataclass»
         +value : float
-        +date : datetime *=now*
+        +date : datetime =now
         +«prop»value() float
-        +«setter»value(value float) void
+        +«setter»value(value: float) void
         +«prop»date() DateTime
         +«setter»date(date: DateTime|String) void
     }
@@ -90,14 +84,14 @@ classDiagram
 
 ## Klassenstruktur und Anforderungen
 ### Allgemeine Angaben
-- Wird bei einer Methode `take_...`, `replace_...` oder `delete_...` ein ungültiger Index angegeben, soll ein `IndexError` ausgelöst werden.
+- Wird bei einer Methode `take_...` oder `delete_...` ein ungültiger Index angegeben, soll ein `IndexError` ausgelöst werden.
 - Wird die maximale Anzahl Beziehungen überschritten, wird ein `OverflowError` ausgelöst.
 
 ### Club
 #### Konstruktor: 
 Die Schreibweise `athletes[] : Athlete` zeigt an, dass es sich um eine Liste (Array) handelt.
 
-####add_athlete
+#### add_athlete
 - Maximum 25 Athleten
 - `OverflowError` bei Überschreitung
 - setzt bei jedem Athleten die Rückreferenz `club`
@@ -127,13 +121,13 @@ Setzt beim übergebenen bzw. erzeugten `PerformanceRecord` die Rückreferenz `at
 
 ### PerformanceRecord
 
-####show_overview
+#### show_overview
 Leistungsausweis mit allen Disziplinen und deren Punkteschnitt
 ```
 todo
 ```
 
-####show_details
+#### show_details
 alle Disziplinen mit den einzelnen Resultaten (Datum + Wert) und dem jeweiligen Schnitt
 ```
 todo
@@ -151,7 +145,7 @@ Implementiert als `@dataclass`
 
 **\_\_post_init\_\_**: Zusicherung für `value` (gültige Zahl, Bereichsprüfung 0.0–10.0), `ValueError` bei ungültigem Wert, `TypeError` bei nicht-numerischem Wert
 
-####<<date.setter>>
+#### <<date.setter>>
 - `DateTime`-Objekt direkt speichern
 - String im Format `(d)d.(m)m.(yy)yy` in `DateTime` konvertieren
 - Alles andere (inkl. `None`): aktueller Zeitstempel
@@ -206,8 +200,8 @@ Athlet Theo nicht gefunden
 
 ## Hinweise
 
-- `show_…`-Methoden liefern Strings, kein `print`
-- `print` nur in `main()` nutzen
+- `show_…`-Methoden liefern Strings als Returnwert und rufen nicht `print` auf
+  - `print` nur in `main()` nutzen
 - Tests einzeln ausführen, z. B. `pytest test_result.py`
 - Die mitgelieferten Tests sind die Spezifikation – sie dürfen nicht verändert werden
 
